@@ -25,6 +25,12 @@
 - Media Queries
 */
 
+#dropZone {
+  background-color: white;
+  outline: 2px dashed black;
+  outline-offset: -10px;
+}
+
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -149,6 +155,17 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
   h4 { font-size: 3.0rem; }
   h5 { font-size: 2.4rem; }
   h6 { font-size: 1.5rem; }
+}
+
+h4 {
+  text-align: center;
+  margin-top: -17%
+}
+
+#wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 p {
