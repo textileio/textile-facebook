@@ -42,7 +42,7 @@ Before deleting your account, you'll probably want to keep a backup of your Face
 
 You can download your information from your Facebook settings. To download your information:
 
-1. Click 🔽 at the top right of any Facebook page and select [`Settings`](https://www.facebook.com/settings).
+1. Click 🔽 at the top right of any Facebook page and select ['Settings'](https://www.facebook.com/settings).
 2. Click '**Download a copy** of your Facebook data' at the bottom of 'General Account Settings'.
 3. Click 'Start My Archive'.
 4. You'll get an email when the archive is ready for you to download.
