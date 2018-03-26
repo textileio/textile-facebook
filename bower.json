@@ -1,0 +1,29 @@
+{
+  "name": "fb2textile",
+  "authors": [
+    "andrew@textile.io"
+  ],
+  "description": "Extract your facebook archive in a usable way.",
+  "main": "index.html",
+  "keywords": [
+    "textile",
+    "facebook",
+    "photos",
+    "tools"
+  ],
+  "license": "MIT",
+  "homepage": "https://textile.photos/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "skeleton": "^2.0.4",
+    "jszip": "Stuk/jszip#^3.1.5",
+    "jszip-utils": "Stuk/jszip-utils#^0.0.2"
+  }
+}

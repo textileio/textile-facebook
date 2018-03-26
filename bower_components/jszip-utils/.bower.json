@@ -1,0 +1,36 @@
+{
+  "name": "jszip-utils",
+  "version": "0.0.2",
+  "homepage": "https://github.com/Stuk/jszip-utils",
+  "authors": [
+    "Stuart Knightley <stuart@stuartk.com>",
+    "David Duponchel <d.duponchel@gmail.com>"
+  ],
+  "description": "A collection of cross-browser utilities to go along with JSZip.",
+  "main": "dist/jszip-utils.js",
+  "keywords": [
+    "JSZip",
+    "ajax",
+    "cross browser",
+    "IE",
+    "Internet Explorer"
+  ],
+  "license": "MIT or GPLv3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.2",
+    "commit": "f50bf924370036d93ca68f67045db66615a27cbb"
+  },
+  "_source": "git://github.com/Stuk/jszip-utils.git",
+  "_target": "^0.0.2",
+  "_originalSource": "Stuk/jszip-utils",
+  "_direct": true
+}
