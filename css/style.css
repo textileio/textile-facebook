@@ -26,3 +26,21 @@
 .desc .button {
     font-size: 12px;
 }
+
+.explainer {
+    margin-top: 45px;
+    text-align: center;
+}
+.explainer .column {
+    padding: 5px 0;
+}
+.folder {
+    border: 2px solid #efefef;
+}
+.footer {
+    margin-top: 25px;
+    height: 118px;
+    padding-top: 100px;
+    background-color: #0065ff;
+    color: white;
+}

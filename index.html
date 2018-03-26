@@ -6,8 +6,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>Textile Facebook Parser</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Put your original gallery names onto the folders of photos you export from Facebook.">
+  <meta name="author" content="textile">
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -43,9 +43,6 @@
   </div>
 </div>
 
-
-
-
 <div id="dropZone" class="section hero">
   <div class="container">
     <div class="row">
@@ -56,14 +53,78 @@
     </div>
   </div>
 </div>
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="/bower_components/jszip/dist/jszip.js"></script>
-  <script src="/bower_components/jszip-utils/dist/jszip-utils.js"></script>
+<div class="section explainer">
+  <div class="container">
+    <div class="row">
+      <div class="u-max-full-width column">
+        <h4>What is this?</h4>
+      </div>
+    </div>
 
-  <script src="/js/FileSaver.js"></script>
-  <script src="/js/app.js"></script>
+    <div class="row">
+      <div class="one-third column">
+        1. When we downloaded our Facebook data, we found all our photos organized like this :(
+      </div>
+      <div class="one-third column">
+        2. But what we really wanted was all our pictures organized in the galleries we had already created, like this
+      </div>
+      <div class="one-third column">
+        3. So we built a tool that would quickly label the exported folders with our original Facebook gallery names.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="one-third column">
+        <img class="folder" src="/img/encoded.png" />
+      </div>
+      <div class="one-third column">
+        <img class="folder" src="/img/organized.png" />
+      </div>
+      <div class="one-third column">
+        <a href="https://www.textile.photos/" target="_blank"><img class="" src="/img/logo-120px.png" /></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-by-two two-thirds column">
+        <i>All the data processing happens right in the browser. Your photos will be reorganized without ever being sent off of your device, your data remains yours :)</i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section explainer">
+  <div class="container">
+    <div class="row">
+      <div class="u-max-full-width column">
+        <h4>Cool, what else can you do for me?</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="u-max-full-width column">
+        <p>Sign up today on <a href="https://www.textile.photos/" target="_blank">Textile.Photos</a></p>
+        <p>We are building an awesome photo storage, management, and sharing tool that you might really like.</p>
+      </div>
+    </div>
+
+</div>
+
+  <div class="section footer">
+    <div class="container">
+      <div class="row">
+        <div class="u-max-full-width column">
+          <b>built by <a href="https://www.textile.io/">textile.io</a></b><br />
+          <p><a href="https://github.com/textileio/textile-facebook">all open source</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/jszip/dist/jszip.js"></script>
+<script src="/bower_components/jszip-utils/dist/jszip-utils.js"></script>
+
+<script src="/js/FileSaver.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
