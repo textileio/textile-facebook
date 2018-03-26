@@ -1,3 +1,5 @@
+View app [https://fb.textile.photos/](https://fb.textile.photos/)
+
 # Deleting Your Facebook Data
 
 There are [two different ways](http://www.trustedreviews.com/news/how-to-delete-facebook-account-2950145) to get your Facebook account offline. The first is *deactivating*, which means:
@@ -50,3 +52,17 @@ You can download your information from your Facebook settings. To download your 
 
 Because this download contains your profile information, you should keep it secure and be careful when storing, sending, or uploading it to any other services.
 If you have any concerns, be sure to read our privacy policy, and get in touch if you have any questions.
+
+# About this project
+
+## How it works
+
+The [https://fb.textile.photos/](https://fb.textile.photos/) app runs entirely in the browser. We make use of a few other frameworks to make that work so easy.
+
+* [JSZip](https://stuk.github.io/jszip/)
+* [FileSaver.js](https://eligrey.com/demos/FileSaver.js/)
+* [Skeleton](http://getskeleton.com/)
+
+## What about Instagram?
+
+Not yet. But we plan to include export helpers for all the main social sites in our [https://textile.photos/](textile.photos app), sign up and we'll get you an invite asap. 

@@ -18,7 +18,8 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600,800" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:100,300,500,700" />
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -39,8 +40,18 @@
       <div class="one-third column value">
         <img class="logo" src="img/logo-240px.png" />
       </div>
-      <div class="two-thirds column value desc">
+      <div class="one-third column value login">
         <a class="button" href="https://www.textile.photos/" target="_blank">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section mobile">
+  <div class="container">
+    <div class="row">
+      <div class="u-max-full-width column">
+        <h5><i>Sorry, this tool really only works in desktop browsers</i></h5>
       </div>
     </div>
   </div>
@@ -51,7 +62,7 @@
     <div class="row">
       <div class="u-max-full-width column">
         <h4>Drag & drop your Facebook export here.</h4>
-        <span><i>Put your photos back the way you left them.</i></span>
+        <span id="generate"><i>Put your photos back the way you left them.</i></span>
       </div>
     </div>
   </div>
@@ -65,33 +76,50 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row steps">
       <div class="one-third column">
-        1. When we downloaded our Facebook data, we found all our photos organized like this :(
+        <div class="row step">
+          1. When we downloaded our Facebook data, we found all our photos organized like this :(
+        </div>
+        <div class="row">
+          <img class="folder" src="/img/encoded.png" />
+        </div>
       </div>
       <div class="one-third column">
-        2. But what we really wanted was all our pictures organized in the galleries we had already created, like this
+        <div class="row step">
+          2. But what we really wanted was all our pictures organized in the galleries we had already created, like this
+        </div>
+        <div class="row step">
+          <img class="folder" src="/img/organized.png" />
+        </div>
       </div>
       <div class="one-third column">
-        3. So we built a tool that would quickly label the exported folders with our original Facebook gallery names.
+        <div class="row step">
+         3. So we built a tool that would quickly label the exported folders with our original Facebook gallery names.
+        </div>
+        <div class="row">
+          <a href="https://www.textile.photos/" target="_blank"><img class="" src="/img/logo-120px.png" /></a>
+        </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="one-third column">
-        <img class="folder" src="/img/encoded.png" />
-      </div>
-      <div class="one-third column">
-        <img class="folder" src="/img/organized.png" />
-      </div>
-      <div class="one-third column">
-        <a href="https://www.textile.photos/" target="_blank"><img class="" src="/img/logo-120px.png" /></a>
+      <div class="offset-by-two two-thirds column">
+        <i>All the data processing happens right in your browser. Your photos will be reorganized without ever being sent off of your device, your data remains yours :)</i>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="section explainer">
+  <div class="container">
     <div class="row">
-      <div class="offset-by-two two-thirds column">
-        <i>All the data processing happens right in the browser. Your photos will be reorganized without ever being sent off of your device, your data remains yours :)</i>
+      <div class="u-max-full-width column">
+        <h4>Want to #deletefacebook? Here's how to export your Facebook data first.</h4>
       </div>
+    </div>
+    <div class="u-max-full-width column">
+      People all over the world are starting to <i>#deletefacebook</i> in response to revelations about just how bad their privacy practices are. If you want to read more about it, check out <a href="https://www.nytimes.com/2018/03/21/technology/users-abandon-facebook.html" target="_blank" >this article from the NYTimes</a>. If you'd like to export your own data before deleting your account, <a href="https://www.facebook.com/help/224562897555674" target="_blank" >read this quick how-to</a>.
     </div>
   </div>
 </div>
@@ -103,26 +131,37 @@
         <h4>Cool, what else can you do for me?</h4>
       </div>
     </div>
-
     <div class="row">
       <div class="u-max-full-width column">
-        <p>Sign up today on <a href="https://www.textile.photos/" target="_blank">Textile.Photos</a></p>
-        <p>We are building an awesome photo storage, management, and sharing tool that you might really like.</p>
-      </div>
-    </div>
-
-</div>
-
-  <div class="section footer">
-    <div class="container">
-      <div class="row">
-        <div class="u-max-full-width column">
-          <b>built by <a href="https://www.textile.io/">textile.io</a></b><br />
-          <p><a href="https://github.com/textileio/textile-facebook">all open source</a></p>
-        </div>
+        <span><a class="button cta" href="https://www.textile.photos/" target="_blank">Sign up today</a></span>
+        <br/>
+        Maybe you need a better place to store you photos? Someplace where you continue to own your images and have full control over who and what you share them with? A place where the terms of service aren't shady and confusing?
+        <b>We are building an awesome photo storage, management, and sharing tool that you are going to really like.</b><br/>
       </div>
     </div>
   </div>
+</div>
+
+<div class="section explainer">
+  <div class="container">
+    <div class="row">
+      <div class="u-max-full-width column">
+        <h4><a href="http://twitter.com/home?status=Check out https://fb.textile.photos/, a tool to quickly turn your #deletefacebook exported photos into nicely named galleries.">Share on Twitter</a></h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section footer">
+  <div class="container">
+    <div class="row">
+      <div class="u-max-full-width column">
+        <b>built by <a href="https://www.textile.io/">textile.io</a></b><br />
+        <p><a href="https://github.com/textileio/textile-facebook">all open source</a></p>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/bower_components/jszip/dist/jszip.js"></script>
 <script src="/bower_components/jszip-utils/dist/jszip-utils.js"></script>

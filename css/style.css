@@ -1,3 +1,40 @@
+body {
+    font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+h1,h2,h3,h4,h5 {
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+@media screen and (min-width: 540px) { /* Specific to this particular image */
+    .mobile {
+        display: none;
+    }
+}
+
+.header .logo {
+    margin: 10px 0;
+    height: 80px;
+}
+.header .login {
+    margin-top: 4px;
+    padding-top: 30px;
+    text-align: right;
+    float: right;
+}
+.header .login .button {
+    font-size: 12px;
+    float: right;
+}
+@media screen and (max-width: 540px) { /* Specific to this particular image */
+    .header .login {
+        display: none;
+    }
+}
+
 .hero {
     border: 1px dashed #aaa;
     text-align: left;
@@ -14,18 +51,7 @@
 .hero.drag {
     background: #fcfcfc;
 }
-.logo {
-    margin: 10px 2px;
-    height: 80px;
-}
-.desc {
-    margin-top: 4px;
-    padding-top: 30px;
-    text-align: right;
-}
-.desc .button {
-    font-size: 12px;
-}
+
 
 .explainer {
     margin-top: 45px;
@@ -34,13 +60,31 @@
 .explainer .column {
     padding: 5px 0;
 }
+.point {
+    text-align: left;
+    margin-top: 45px;
+}
+
+.steps .step {
+    height: 120px;
+}
+.steps .show {
+    margin-top: 10px;
+}
+
 .folder {
     border: 2px solid #efefef;
 }
+.cta {
+    text-align: center;
+    margin: 30px 0 50px 0;
+}
+
 .footer {
     margin-top: 25px;
     height: 118px;
     padding-top: 100px;
     background-color: #0065ff;
     color: white;
+    text-align: center;
 }

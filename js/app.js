@@ -95,11 +95,11 @@ var Textile = {
             })
     },
     addDownload: function() {
-        $('body').append('<div id="wrapper"><button id="blob" class="btn btn-primary">click to download</button></div>');
+        $('#generate').html('<div id="wrapper"><button id="blob" class="btn btn-primary">click to download</button></div>');
         $("#blob").on("click", function () {
             Textile.file.generateAsync({type:"blob"})
                 .then(function(content) {
-                    saveAs(content, "photos.zip");
+                    saveAs(content, "facebook-photos.zip");
                 });
         });
     }
