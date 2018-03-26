@@ -22,7 +22,7 @@ $(document).ready(function() {
                 reader.onload = function (e2) {
                     console.log("read: file data");
                     Textile.loadZip(e2.target.result)
-                }
+                };
                 reader.readAsArrayBuffer(file); // start reading the file data.
             } else {
                 console.log("no: ", file.type)
@@ -40,24 +40,52 @@ var Textile = {
     },
     parseZip: function(zip) {
         console.log("parsing: zip data");
-        zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
-            if (relativePath.match(/^photos\/\S*jpg/)) {
-                Textile.file.file(relativePath, zipEntry._data)
-            }
+        zip.file("html/photos.htm")
+            .async("text")
+            .then(function(txt) {
+                var html = $.parseHTML(txt);
+                var mapper = {};
+                html.forEach(function(el) {
+                    if (el.className === "contents") {
+                        mapper = $(el)
+                            .find(".block div a")
+                            .toArray()
+                            .reduce(function(p, c) {
+                                var item = $(c);
+                                p[item.attr('href').split(".html")[0]] = item.html().split(" - ")[0];
+                                return p
+                            }, {});
+                    }
+                });
+                return mapper
+            })
+            .then(function(mapper) {
+                zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
+                    var name;
+                    if (relativePath.match(/^photos\/\S*\/\S*jpg/)) {
+                        var index = relativePath.lastIndexOf("/");
+                        var base = mapper[relativePath.substring(0, index)];
+                        var photo = relativePath.substring(index);
+                        if (base === undefined) {
+                            base = relativePath.substring(0, index)
+                        }
+                        Textile.file.file("Photos/" + base + photo, zipEntry._data)
+                    }
 
-            if (relativePath.match(/^messages\/\S*jpg/)) {
-                var splitPath = relativePath.split("/");
-                var name = splitPath[splitPath.length - 1]
-                Textile.file.file("Messages/"+name, zipEntry._data)
-            }
-        });
-        // Should be moved to when parsing is totally complete
-        Textile.addDownload();
+                    if (relativePath.match(/^messages\/\S*jpg/)) {
+                        var splitPath = relativePath.split("/");
+                        name = splitPath[splitPath.length - 1];
+                        Textile.file.file("Messages/"+name, zipEntry._data)
+                    }
+                });
+                return true
+            })
+            .then(function() {
+                Textile.addDownload();
+            })
     },
     addDownload: function() {
-
         $('body').append('<button id="blob" class="btn btn-primary">click to download</button>');
-
         $("#blob").on("click", function () {
             Textile.file.generateAsync({type:"blob"})
                 .then(function(content) {
@@ -65,4 +93,4 @@ var Textile = {
                 });
         });
     }
-}
+};
