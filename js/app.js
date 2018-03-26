@@ -29,25 +29,35 @@ $(document).ready(function() {
             }
         }
     });
+
 });
 
 var Textile = {
-    newZip: function(file) {
-        console.log(file)
-        JSZipUtils.getBinaryContent(file, Textile.loadZip);
-    },
+    file: new JSZip(),
     loadZip: function(data) {
         JSZip.loadAsync(data)
             .then(Textile.parseZip)
     },
     parseZip: function(zip) {
-        console.log("parsing: zip data")
-        // stopped here
-        var $fileContent = $("<ul>");
+        console.log("parsing: zip data");
+        var p = 0
         zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
-            $fileContent.append($("<li>", {
-                text : zipEntry.name
-            }));
+            if (relativePath.match(/^photos\/\S*jpg/)) {
+                Textile.file.file(relativePath, zipEntry._data)
+            }
+        });
+        // Should be moved to when parsing is totally complete
+        Textile.addDownload();
+    },
+    addDownload: function() {
+
+        $('body').append('<button id="blob" class="btn btn-primary">click to download</button>');
+
+        $("#blob").on("click", function () {
+            Textile.file.generateAsync({type:"blob"})
+                .then(function(content) {
+                    saveAs(content, "example.zip");
+                });
         });
     }
 }
