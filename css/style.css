@@ -1,0 +1,46 @@
+.hero {
+    border: 1px dashed #aaa;
+    text-align: left;
+    padding: 10% 0%;
+    margin: 0 1%;
+}
+@media screen and (min-width: 1024px) { /* Specific to this particular image */
+    .hero {
+        background: url("/img/folder.png") no-repeat center right;
+        /*background-size: auto 60% ;*/
+        background-repeat: no-repeat;
+    }
+}
+.hero.drag {
+    background: #fcfcfc;
+}
+.logo {
+    margin: 10px 2px;
+    height: 80px;
+}
+.desc {
+    margin-top: 4px;
+    padding-top: 30px;
+    text-align: right;
+}
+.desc .button {
+    font-size: 12px;
+}
+
+.explainer {
+    margin-top: 45px;
+    text-align: center;
+}
+.explainer .column {
+    padding: 5px 0;
+}
+.folder {
+    border: 2px solid #efefef;
+}
+.footer {
+    margin-top: 25px;
+    height: 118px;
+    padding-top: 100px;
+    background-color: #0065ff;
+    color: white;
+}

@@ -1,17 +1,27 @@
 $(document).ready(function() {
     var dropZone = document.getElementById('dropZone');
 
-// Optional.   Show the copy icon when dragging over.  Seems to only work for chrome.
+    dropZone.addEventListener('dragenter', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $('#dropZone').addClass("drag");
+    });
+
     dropZone.addEventListener('dragover', function (e) {
         e.stopPropagation();
         e.preventDefault();
-        e.dataTransfer.dropEffect = 'copy';
+        $('#dropZone').addClass("drag");
+    });
+    dropZone.addEventListener('dragleave', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $('#dropZone').removeClass("drag");
     });
 
-// Get file data on drop
     dropZone.addEventListener('drop', function (e) {
         e.stopPropagation();
         e.preventDefault();
+        $('#dropZone').removeClass("drag");
         var files = e.dataTransfer.files; // Array of all files
 
         for (var i = 0, file; file = files[i]; i++) {
@@ -75,7 +85,7 @@ var Textile = {
                     if (relativePath.match(/^messages\/\S*jpg/)) {
                         var splitPath = relativePath.split("/");
                         name = splitPath[splitPath.length - 1];
-                        Textile.file.file("Messages/"+name, zipEntry._data)
+                        Textile.file.file("Photos/Messages/"+name, zipEntry._data)
                     }
                 });
                 return true
@@ -89,7 +99,7 @@ var Textile = {
         $("#blob").on("click", function () {
             Textile.file.generateAsync({type:"blob"})
                 .then(function(content) {
-                    saveAs(content, "example.zip");
+                    saveAs(content, "photos.zip");
                 });
         });
     }
