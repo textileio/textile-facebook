@@ -49,7 +49,7 @@ var Textile = {
             if (relativePath.match(/^messages\/\S*jpg/)) {
                 var splitPath = relativePath.split("/");
                 var name = splitPath[splitPath.length - 1]
-                Textile.file.file("messages/"+name, zipEntry._data)
+                Textile.file.file("Messages/"+name, zipEntry._data)
             }
         });
         // Should be moved to when parsing is totally complete
