@@ -40,7 +40,6 @@ var Textile = {
     },
     parseZip: function(zip) {
         console.log("parsing: zip data");
-        var p = 0
         zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
             if (relativePath.match(/^photos\/\S*jpg/)) {
                 Textile.file.file(relativePath, zipEntry._data)
