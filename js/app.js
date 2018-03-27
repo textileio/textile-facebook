@@ -39,6 +39,8 @@ $(document).ready(function() {
             }
         }
     });
+    $('.full-caution').hide();
+    $('.partial-caution').click(function(){ $('.full-caution').show(); });
 
 });
 
