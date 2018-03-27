@@ -62,7 +62,7 @@ var Textile = {
                             .toArray()
                             .reduce(function(p, c) {
                                 var item = $(c);
-                                p[item.attr('href').split(".html")[0]] = item.html().split(" - ")[0];
+                                p[item.attr('href').split(".html")[0]] = {folder: item.html().split(" - ")[0]};
                                 return p
                             }, {});
                     }
@@ -70,15 +70,55 @@ var Textile = {
                 return mapper
             })
             .then(function(mapper) {
+                var meta = {};
+                var targets = []
+                zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
+                    if (relativePath.match(/^photos\/\S*html/)) {
+                        targets.push(zipEntry)
+                    }
+                })
+                var promises = targets.map(function(zipEntry){
+                    return zipEntry.async("string").then(function(fileData){
+                        var html = $.parseHTML(fileData);
+                        html.forEach(function(el) {
+                            $(el).find(".block")
+                                .toArray()
+                                .forEach(function(v, i) {
+                                    var link = $(v).find('img').attr('src');
+                                    var parts = link.split('.jpg')[0].split('/');
+                                    var id = parts[parts.length - 1].split('_')[1];
+                                    var taken = $(v).find('div div.meta').html();
+                                    meta[id] = {"date": taken}
+                                    var tablemeta = $(v).find('div table.meta');
+                                    $(tablemeta).find('tr').toArray().forEach(function(m, ii) {
+                                        var kk = $(m).find('th').html();
+                                        var val = $(m).find('td').html();
+                                        meta[id][kk] = val
+                                    })
+                                }, {});
+                        });
+                    })
+                })
+                return Promise.all(promises).then(function(){
+                    return {"mapper": mapper, "meta": meta}
+                })
+            })
+            .then(function(info) {
+                var mapper = info['mapper'];
+                var meta = info['meta'];
                 zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
                     var name;
                     if (relativePath.match(/^photos\/\S*\/\S*jpg/)) {
                         var index = relativePath.lastIndexOf("/");
-                        var base = mapper[relativePath.substring(0, index)];
+                        var base = mapper[relativePath.substring(0, index)].folder;
                         var photo = relativePath.substring(index);
                         if (base === undefined) {
                             base = relativePath.substring(0, index)
                         }
+                        var photoId = photo.replace("/", "").replace(".jpg", "")
+
+                        console.log(meta[photoId])
+
                         Textile.file.file("Photos/" + base + photo, zipEntry._data)
                     }
 
