@@ -52,6 +52,15 @@ h5 {
     background: #fcfcfc;
 }
 
+.disclaimer {
+    margin-top: 10px;
+    background-color: #ffe2cf;
+    padding: 10px;
+    border-radius: 5px;
+}
+.disclaimer p {
+    margin-bottom: 0;
+}
 
 .explainer {
     margin-top: 45px;
