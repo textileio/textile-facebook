@@ -65,4 +65,4 @@ The [https://fb.textile.photos/](https://fb.textile.photos/) app runs entirely i
 
 ## What about Instagram?
 
-Not yet. But we plan to include export helpers for all the main social sites in our [https://textile.photos/](textile.photos app), sign up and we'll get you an invite asap. 
+Not yet. But we plan to include export helpers for all the main social sites in our [textile.photos app](https://textile.photos/), sign up and we'll get you an invite asap. 
