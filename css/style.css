@@ -94,6 +94,10 @@ h5 {
     margin: 30px 0 50px 0;
 }
 
+.error {
+    color: red;
+}
+
 .footer {
     margin-top: 25px;
     height: 118px;

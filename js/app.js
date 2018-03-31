@@ -50,8 +50,14 @@ var Textile = {
         JSZip.loadAsync(data)
             .then(Textile.parseZip)
     },
+    photosFileExists: function (zip) {
+        return Object.keys(zip.files).indexOf('html/photos.htm') !== -1;
+    },
     parseZip: function(zip) {
         console.log("parsing: zip data");
+        if ( !Textile.photosFileExists(zip) ) {
+            Textile.addError();
+        }
         zip.file("html/photos.htm")
             .async("text")
             .then(function(txt) {
@@ -104,5 +110,8 @@ var Textile = {
                     saveAs(content, "facebook-photos.zip");
                 });
         });
+    },
+    addError: function() {
+      $('#generate').html('<div id="wrapper"><span class="error">html/photos.html does not exist in the uploaded zip file, please check the folder structure inside the file</span></div>');
     }
 };
