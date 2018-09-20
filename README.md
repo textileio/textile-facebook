@@ -1,5 +1,7 @@
 View app [https://fb.textile.photos/](https://fb.textile.photos/)
 
+Join discussion [https://news.ycombinator.com/item?id=16682940](https://news.ycombinator.com/item?id=16682940)
+
 # Deleting Your Facebook Data
 
 There are [two different ways](http://www.trustedreviews.com/news/how-to-delete-facebook-account-2950145) to get your Facebook account offline. The first is *deactivating*, which means:
