@@ -52,6 +52,20 @@ h5 {
     background: #fcfcfc;
 }
 
+.caution {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.caution p {
+    margin-bottom: 0;
+}
+.partial-caution {
+    text-decoration: none;
+}
+.full-caution {
+    background-color: #ffe2cf;
+}
 
 .explainer {
     margin-top: 45px;

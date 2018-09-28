@@ -25,7 +25,7 @@ $(document).ready(function() {
         var files = e.dataTransfer.files; // Array of all files
 
         for (var i = 0, file; file = files[i]; i++) {
-            if (file.type.match('application/zip')) {
+            if (file.type.match('application/zip') || file.type.match('application/x-zip-compressed')) {
                 console.log("received: ", file.name);
                 var reader = new FileReader();
                 // //
@@ -39,6 +39,8 @@ $(document).ready(function() {
             }
         }
     });
+    $('.full-caution').hide();
+    $('.partial-caution').click(function(){ $('.full-caution').show(); });
 
 });
 

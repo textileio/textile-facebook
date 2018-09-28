@@ -1,5 +1,7 @@
 View app [https://fb.textile.photos/](https://fb.textile.photos/)
 
+Join discussion [https://news.ycombinator.com/item?id=16682940](https://news.ycombinator.com/item?id=16682940)
+
 # Deleting Your Facebook Data
 
 There are [two different ways](http://www.trustedreviews.com/news/how-to-delete-facebook-account-2950145) to get your Facebook account offline. The first is *deactivating*, which means:
@@ -65,4 +67,4 @@ The [https://fb.textile.photos/](https://fb.textile.photos/) app runs entirely i
 
 ## What about Instagram?
 
-Not yet. But we plan to include export helpers for all the main social sites in our [https://textile.photos/](textile.photos app), sign up and we'll get you an invite asap. 
+Not yet. But we plan to include export helpers for all the main social sites in our [textile.photos app](https://www.textile.photos/), sign up and we'll get you an invite asap. 
