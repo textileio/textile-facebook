@@ -52,6 +52,18 @@ var Textile = {
     },
     parseZip: function(zip) {
         console.log("parsing: zip data");
+        if (zip.file("html/photos.htm")) {
+            Textile.parseHtml(zip);
+        }
+        else {
+            Textile.parseJson(zip);
+        }
+    },
+    parseJson: function(zip) {
+        console.error("Cannot find 'html/photos.htm'.");
+        console.error("You need HTML not JSON export.");
+    },
+    parseHtml: function(zip) {
         zip.file("html/photos.htm")
             .async("text")
             .then(function(txt) {
