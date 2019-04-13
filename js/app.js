@@ -59,21 +59,6 @@ var Textile = {
             Textile.parseJson(zip);
         }
     },
-    parseJsonYourPosts: function(mapper) {
-        var status_updates = mapper["status_updates"];
-        status_updates.forEach(function (status_update) {
-            var milliUnix = 1000 * status_update["timestamp"];
-            var attachments = status_update["attachments"];
-            var isoDate = new Date(milliUnix).toISOString();
-            if (attachments) {
-                var statusFileCount = attachments.length;
-                var msg = " files in a status on ";
-                console.log(statusFileCount + msg + isoDate);
-            }
-            return;
-        });
-        return true
-    },
     parseZipMap: function(dirname, zip, mapper) {
         zip.forEach(function (relativePath, zipEntry) {
             var name;
@@ -100,15 +85,6 @@ var Textile = {
     parseJson: function(zip) {
         console.warn("Cannot find 'html/photos.htm'.");
         console.warn("Assuming JSON export!");
-
-        // TODO: Extract image files from posts
-        var TODO_LOG_POSTS = false;
-        if (TODO_LOG_POSTS) {
-            zip.file("posts/your_posts.json")
-                .async("text")
-                .then(JSON.parse)
-                .then(Textile.parseJsonYourPosts);
-        }
 
         var photoRoot = "photos_and_videos";
         var albumRoot = "photos_and_videos/album/";
