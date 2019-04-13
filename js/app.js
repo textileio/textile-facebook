@@ -74,10 +74,12 @@ var Textile = {
         });
         return true
     },
-    parseZipMap: function(zip, mapper) {
+    parseZipMap: function(dirname, zip, mapper) {
         zip.forEach(function (relativePath, zipEntry) {
             var name;
-            if (relativePath.match(/^photos\/\S*\/\S*jpg/)) {
+            var matchPath = ["^" + dirname, "\\S*", "\\S*jpg"];
+            var matchRegExp = new RegExp(matchPath.join("\\/"));
+            if (relativePath.match(matchRegExp)) {
                 var index = relativePath.lastIndexOf("/");
                 var base = mapper[relativePath.substring(0, index)];
                 var photo = relativePath.substring(index);
@@ -108,13 +110,10 @@ var Textile = {
                 .then(Textile.parseJsonYourPosts);
         }
 
+        var photoRoot = "photos_and_videos";
         var albumRoot = "photos_and_videos/album/";
         zip.file(new RegExp(albumRoot + ".*\.json"))
             .forEach(function(jsonFile, i) {
-                if (i >= 3) {
-                    return;
-                    // TODO
-                }
                 jsonFile.async("text")
                 .then(JSON.parse)
                 .then(function(album) {
@@ -131,7 +130,7 @@ var Textile = {
                     return albumMap;
                 })
                 .then(function(mapper) {
-                    Textile.parseZipMap(zip, mapper);
+                    Textile.parseZipMap(photoRoot, zip, mapper);
                 })
                 .then(function() {
                     Textile.addDownload();
