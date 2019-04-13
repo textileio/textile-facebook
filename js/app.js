@@ -59,9 +59,84 @@ var Textile = {
             Textile.parseJson(zip);
         }
     },
+    parseJsonYourPosts: function(mapper) {
+        var status_updates = mapper["status_updates"];
+        status_updates.forEach(function (status_update) {
+            var milliUnix = 1000 * status_update["timestamp"];
+            var attachments = status_update["attachments"];
+            var isoDate = new Date(milliUnix).toISOString();
+            if (attachments) {
+                var statusFileCount = attachments.length;
+                var msg = " files in a status on ";
+                console.log(statusFileCount + msg + isoDate);
+            }
+            return;
+        });
+        return true
+    },
+    parseZipMap: function(zip, mapper) {
+        zip.forEach(function (relativePath, zipEntry) {
+            var name;
+            if (relativePath.match(/^photos\/\S*\/\S*jpg/)) {
+                var index = relativePath.lastIndexOf("/");
+                var base = mapper[relativePath.substring(0, index)];
+                var photo = relativePath.substring(index);
+                if (base === undefined) {
+                    base = relativePath.substring(0, index)
+                }
+                Textile.file.file("Photos/" + base + photo, zipEntry._data)
+            }
+
+            if (relativePath.match(/^messages\/\S*jpg/)) {
+                var splitPath = relativePath.split("/");
+                name = splitPath[splitPath.length - 1];
+                Textile.file.file("Photos/Messages/"+name, zipEntry._data)
+            }
+        });
+        return true
+    },
     parseJson: function(zip) {
-        console.error("Cannot find 'html/photos.htm'.");
-        console.error("You need HTML not JSON export.");
+        console.warn("Cannot find 'html/photos.htm'.");
+        console.warn("Assuming JSON export!");
+
+        // TODO: Extract image files from posts
+        var TODO_LOG_POSTS = false;
+        if (TODO_LOG_POSTS) {
+            zip.file("posts/your_posts.json")
+                .async("text")
+                .then(JSON.parse)
+                .then(Textile.parseJsonYourPosts);
+        }
+
+        var albumRoot = "photos_and_videos/album/";
+        zip.file(new RegExp(albumRoot + ".*\.json"))
+            .forEach(function(jsonFile, i) {
+                if (i >= 3) {
+                    return;
+                    // TODO
+                }
+                jsonFile.async("text")
+                .then(JSON.parse)
+                .then(function(album) {
+                    if (album) {
+                        var albumPhotos = album["photos"];
+                    }
+                    var albumMap = {};
+                    if (albumPhotos) {
+                        return albumPhotos.reduce(function(p, c) {
+                            p[c["uri"]] = album["name"];
+                            return p;
+                        }, albumMap);
+                    }
+                    return albumMap;
+                })
+                .then(function(mapper) {
+                    Textile.parseZipMap(zip, mapper);
+                })
+                .then(function() {
+                    Textile.addDownload();
+                });
+            });
     },
     parseHtml: function(zip) {
         zip.file("html/photos.htm")
