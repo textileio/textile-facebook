@@ -77,15 +77,23 @@ var Textile = {
     parseZipMap: function(dirname, zip, mapper) {
         zip.forEach(function (relativePath, zipEntry) {
             var name;
-            var matchPath = ["^" + dirname, "\\S*", "\\S*jpg"];
-            var matchRegExp = new RegExp(matchPath.join("\\/"));
-            if (relativePath.match(matchRegExp)) {
+
+            var segment1nd = relativePath.split("/")[0];
+            var segment2nd = relativePath.split("/")[1];
+            var last_segment = relativePath.split("/").pop();
+            var last_is_jpg = last_segment.split(".").pop() == "jpg";
+            var photos_1st = segment1nd == dirname;
+
+            if ((photos_1st) & (last_is_jpg)) {
+
                 var index = relativePath.lastIndexOf("/");
-                var base = mapper[relativePath.substring(0, index)];
-                var photo = relativePath.substring(index);
-                if (base === undefined) {
-                    base = relativePath.substring(0, index)
-                }
+                var mapKey = Textile.makeMapKey(relativePath);
+                var photoRecord = mapper[mapKey] || {
+                    fileName: relativePath.substring(index),
+                    albumName: mapKey
+                };
+                var photo = photoRecord["fileName"];
+                var base = photoRecord["albumName"];
                 Textile.file.file("Photos/" + base + photo, zipEntry._data)
             }
 
@@ -112,30 +120,67 @@ var Textile = {
 
         var photoRoot = "photos_and_videos";
         var albumRoot = "photos_and_videos/album/";
-        zip.file(new RegExp(albumRoot + ".*\.json"))
-            .forEach(function(jsonFile, i) {
-                jsonFile.async("text")
-                .then(JSON.parse)
-                .then(function(album) {
-                    if (album) {
-                        var albumPhotos = album["photos"];
-                    }
-                    var albumMap = {};
-                    if (albumPhotos) {
-                        return albumPhotos.reduce(function(p, c) {
-                            p[c["uri"]] = album["name"];
-                            return p;
-                        }, albumMap);
-                    }
-                    return albumMap;
-                })
-                .then(function(mapper) {
-                    Textile.parseZipMap(photoRoot, zip, mapper);
-                })
-                .then(function() {
-                    Textile.addDownload();
+        var allJson = new RegExp(albumRoot + ".*\.json")
+
+        var records = zip.file(allJson).map(function(jsonFile, i) {
+            return jsonFile.async("text")
+            .then(JSON.parse)
+            .then(function(album) {
+                if (album) {
+                    var albumPhotos = album["photos"] || [];
+                    console.log(album["name"] + " w/ " + albumPhotos.length);
+                }
+                return albumPhotos.map(function(photo) {
+                    return Textile.makePhotoRecord(album, photo);
                 });
             });
+        });
+        Promise.all(records)
+        .then(function(photoRecordLists) {
+            // Map every file name to a photo record
+            return photoRecordLists.reduce(function(mapper, photoRecords) {
+                return photoRecords.reduce(function(records, record) {
+                    var uri = record["absolutePath"];
+                    records[Textile.makeMapKey(uri)] = record;
+                    return records;
+                }, mapper);
+            }, {});
+        })
+        .then(function(mapper) {
+            Textile.parseZipMap(photoRoot, zip, mapper);
+        })
+        .then(function() {
+            Textile.addDownload();
+        });
+    },
+    makeMapKey: function(uri) {
+        return uri;
+    },
+    makePhotoRecord: function(album, photo) {
+        var absolutePath = photo["uri"];
+
+        // var timestamp = album["last_modified_timestamp"];
+        var timestamp = photo["creation_timestamp"];
+        var milliUnix = 1000 * timestamp;
+        var isoDate = new Date(milliUnix).toISOString();
+        isoDate = isoDate.split(":")[0];
+
+        // TODO: messy
+        var fileName = (function(useDateAsName) {
+            var index = absolutePath.lastIndexOf("/");
+            var realName = absolutePath.substring(index);
+            if (!useDateAsName) {
+                return realName
+            }
+            return "/" + isoDate + realName;
+        })(true);
+
+        return {
+            date: isoDate,
+            fileName: fileName,
+            albumName: album["name"],
+            absolutePath: absolutePath
+        };
     },
     parseHtml: function(zip) {
         zip.file("html/photos.htm")
